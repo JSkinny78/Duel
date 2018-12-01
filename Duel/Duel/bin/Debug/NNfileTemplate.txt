@@ -1,0 +1,11 @@
+Learning Rate
+Layers count 
+Neuron count
+Neuron bi
+Neuron de
+Neuron val
+Dendrite count
+Dendrite val Loop to end
+Neuron count
+etc
+Neuron
