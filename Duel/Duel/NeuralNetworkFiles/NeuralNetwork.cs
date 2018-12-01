@@ -14,6 +14,7 @@ namespace Duel
         StreamReader sr;
         public List<Layer> Layers { get; set; }
         public double LearningRate { get; set; }
+        String fn;
         public int LayerCount
         {
             get
@@ -47,10 +48,37 @@ namespace Duel
                 });
             }
 
+        }        
+        public NeuralNetwork(double learningRate, int[] layers, int rand)
+        {
+            if (layers.Length < 2) return;
+
+            this.LearningRate = learningRate;
+            this.Layers = new List<Layer>();
+            //Random rnd = new Random(Environment.TickCount);
+            for (int l = 0; l < layers.Length; l++)
+            {
+                Layer layer = new Layer(layers[l]);
+                this.Layers.Add(layer);
+
+                for (int n = 0; n < layers[l]; n++)
+                    layer.Neurons.Add(new Neuron());
+
+                layer.Neurons.ForEach((nn) =>
+                {
+                    if (l == 0)
+                        nn.Bias = 0;
+                    else
+                        for (int d = 0; d < layers[l - 1]; d++)
+                            nn.Dendrites.Add(new Dendrite());
+                });
+            }
+
         }
         public NeuralNetwork(String filename)
         {
             //Constructors 
+            fn = filename;
             sr = new StreamReader(filename);
             int count = 0;
             int layersCount;
@@ -109,7 +137,7 @@ namespace Duel
 
         public double[] Run(List<double> input)
         {
-            using (StreamWriter sw = new StreamWriter("NetworkTestData1.txt"))
+            using (StreamWriter sw = new StreamWriter("fn"))
             {
                 sw.Write(printValue());
             }
@@ -166,8 +194,6 @@ namespace Duel
 
             }
             //return 'b';
-
-
         }
         public bool Train(List<double> input, List<double> output)
         {

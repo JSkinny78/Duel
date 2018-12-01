@@ -23,6 +23,9 @@ namespace Duel
         //output: 3(my.attack, my.block, my.heal)
         NeuralNetwork brain1 = new NeuralNetwork(15, new int[] { 4, 4, 3 });
         NeuralNetwork brain2 = new NeuralNetwork(15, new int[] { 4, 4, 3 });
+        NeuralNetwork ajax = new NeuralNetwork("Ajax.txt");
+        NeuralNetwork burtha = new NeuralNetwork("Burtha.txt");
+       
         public Form1()
         {
             InitializeComponent();
@@ -41,9 +44,8 @@ namespace Duel
             playerStats.Add(Convert.ToDouble(c.getHP()));
             playerStats.Add(Convert.ToDouble(c.getPotions()));
             p.setState(brain1.Action(playerStats));
-
             string pstat = string.Join(", ", playerStats.ToArray());
-
+            //Computer Stats
             List<double> computerStats = new List<Double>();
             computerStats.Add(Convert.ToDouble(c.getHP()));
             computerStats.Add(Convert.ToDouble(c.getPotions()));
@@ -51,7 +53,6 @@ namespace Duel
             computerStats.Add(Convert.ToDouble(p.getPotions()));
             c.setState(brain2.Action(playerStats));
             string cstat = string.Join(", ", computerStats.ToArray());
-
             outputRTB.AppendText(pstat + "\n" + cstat + "\n");
 
             //Check if players alive
@@ -62,10 +63,18 @@ namespace Duel
             else if(c.getPulse() == false)
             {
                 outputRTB.AppendText("\n" + p.getName() + " Wins!" + "\n" + "Thank you for playing");
+                outputRTB.AppendText("Game Restarting");
+                restart();
+                Random n = new Random(Environment.TickCount);
+                brain1 = new NeuralNetwork(15, new int[] { 4, 4, 3 },0);
             }
             else if (p.getPulse() == false)
             {
+                Random n = new Random(Environment.TickCount);
                 outputRTB.AppendText("\n" + c.getName() + " Wins!" + "\n" + "Thank you for playing");
+                outputRTB.AppendText("Game Restarting");
+                restart();
+                brain2 = new NeuralNetwork(15, new int[] { 4, 4, 3 },0);
             }
             else
             {
@@ -84,6 +93,10 @@ namespace Duel
             outputRTB.ScrollToCaret();
         }
 
+        private void restart(){
+            p = new Player("Player");
+            c = new Player("Computer");
+        }
         //Player Attack Button
         private void attackButton_Click(object sender, EventArgs e)
         {
