@@ -12,12 +12,14 @@ namespace Duel
 {
     public partial class Form1 : Form
     {
+        int train = 0;
         //initialize player
         Player p = new Player("Player");
         int pWins = 0;
         //initialize computer
         Player c = new Player("Computer");
         int cWins = 0;
+        
         //initialize computer brain
         //Layers
         //input: 4(my.hp, my.potions, notmy.hp, notmy.potions)
@@ -33,7 +35,7 @@ namespace Duel
             InitializeComponent();
         }
         //Computer Start Button
-      
+        
         private void fightButton_Click(object sender, EventArgs e)
         {
             //Add computer training to this loop
@@ -61,13 +63,11 @@ namespace Duel
             if (p.getPulse() == false && c.getPulse() == false)
             {
                 outputRTB.AppendText("\n" + "******Tie!******" );
-                outputRTB.AppendText("\n"+"Game Restarting");
                 restart();
             }
             else if(c.getPulse() == false)//Computer Dead
             {
                 outputRTB.AppendText("\n" + p.getName() + " Wins!" + "\n" + "Thank you for playing");
-                outputRTB.AppendText("\n" + "Game Restarting"+"\n");
                 restart();
                 regenNN(burtha, computerStats);
             }
@@ -75,9 +75,8 @@ namespace Duel
             {
                 Random n = new Random(Environment.TickCount);
                 outputRTB.AppendText("\n" + c.getName() + " Wins!" + "\n" + "Thank you for playing");
-                outputRTB.AppendText("\n" + "Game Restarting");
                 restart();
-                burtha.saveNetwork();
+                //burtha.saveNetwork();
             }
             else
             {
@@ -88,17 +87,28 @@ namespace Duel
                 //Call c.TakeTurn(p)
                 c.takeTurn(p, outputRTB);
                 //call p.EndTurn()
-                p.endTurn(playerStatsRTB, outputRTB);
+                p.endTurn(playerStatsRTB, outputRTB, playerProgress);
                 //call c.EndTurn(p)
-                c.endTurn(compStatRTB, outputRTB);
+                c.endTurn(compStatRTB, outputRTB, ComputerProgress);
             }
             outputRTB.SelectionStart = outputRTB.Text.Length;
             outputRTB.ScrollToCaret();
         }
 
         private void restart(){
-            p = new Player("Player");
-            c = new Player("Computer");
+            train++;
+            if(train == 100)
+            {
+                outputRTB.AppendText("\n" + "Training Over" + "\n");
+            }
+            else
+            {
+                p = new Player("Player");
+                c = new Player("Computer");
+            }
+            outputRTB.AppendText("\n" + "Game Restarting" + "\n");
+            
+
         }
         //Player Attack Button
         private void attackButton_Click(object sender, EventArgs e)
@@ -151,7 +161,7 @@ namespace Duel
             //Setting the input values
             
             
-            for (int i = 0; i < 10000; i++)
+            while(train<1000)
             {
                 List<double> playerStats = new List<Double>();
                 playerStats.Add(Convert.ToDouble(p.getHP()));
@@ -168,7 +178,7 @@ namespace Duel
                 computerStats.Add(Convert.ToDouble(p.getHP()));
                 computerStats.Add(Convert.ToDouble(p.getPotions()));
                 c.setState(burtha.Action(computerStats));
-                Console.WriteLine(c.getState());
+                //Console.WriteLine(c.getState());
                 string cstat = string.Join(", ", computerStats.ToArray());
                 //outputRTB.AppendText(pstat + "\n" + cstat + "\n");
                 
@@ -177,19 +187,17 @@ namespace Duel
                 {
                     outputRTB.AppendText("\n" + "******Tie!******");
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
-                    outputRTB.AppendText("\n Game Restarting \n");
                     restart();
-                    regenNN(ajax,playerStats);
+                    //regenNN(ajax,playerStats);
                     regenNN(burtha, computerStats);
                 }
                 else if (c.getPulse() == false) //Computer Dead
                 {
                     outputRTB.AppendText("\n" + p.getName() + " Wins!");
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
-                    outputRTB.AppendText("\n Game Restarting");
                     restart();
                     regenNN(burtha, computerStats);
-                    ajax.saveNetwork();
+                    //ajax.saveNetwork();
                     pWins++;
                     pWinsRTB.Text = ("Wins: " + pWins);
                 }
@@ -198,9 +206,8 @@ namespace Duel
                     Random n = new Random(Environment.TickCount);
                     outputRTB.AppendText("\n" + c.getName() + " Wins!");
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
-                    outputRTB.AppendText("\n Game Restarting");
                     restart();
-                    burtha.saveNetwork();
+                    //burtha.saveNetwork();
                     regenNN(ajax,playerStats);
                     cWins++;
                     cWinsRTB.Text = ("Wins: " + cWins);
@@ -214,9 +221,9 @@ namespace Duel
                     //Call c.TakeTurn(p)
                     c.takeTurn(p, outputRTB);
                     //call p.EndTurn()
-                    p.endTurn(playerStatsRTB, outputRTB);
+                    p.endTurn(playerStatsRTB, outputRTB, playerProgress);
                     //call c.EndTurn(p)
-                    c.endTurn(compStatRTB, outputRTB);
+                    c.endTurn(compStatRTB, outputRTB, ComputerProgress);
                 }
                 outputRTB.SelectionStart = outputRTB.Text.Length;
                 outputRTB.ScrollToCaret();
@@ -244,14 +251,23 @@ namespace Duel
         }
         private char randomChar()
         {
-            Double d = getNextRand(0, 3);
-            if (d > 1){
+            Random rnd = new Random(Environment.TickCount);
+            int d = rnd.Next(0, 3);
+            //Console.WriteLine(d);
+            if (d == 0){
                 return 'h';
-            }else if (d > 2){
+            }else if (d == 1){
                 return 'b';
             }else{
                 return 'a';
             }
+        }
+
+        private void saveAndCloseBTN_Click(object sender, EventArgs e)
+        {
+            ajax.saveNetwork();
+            burtha.saveNetwork();
+            this.Close();
         }
     }
 }

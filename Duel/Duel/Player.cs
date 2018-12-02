@@ -10,6 +10,7 @@ namespace Duel
     class Player
     {
         private string name;
+        private readonly int HPMAX = 30;
         private int hp;
         private int potions;
         private Boolean pulse;
@@ -20,12 +21,13 @@ namespace Duel
         public Player(string id)
         {
             this.name = id;
-            this.hp = 40;
+            this.hp = HPMAX;
             this.potions = 3;
             this.pulse = true;
         }
         public void takeTurn(Player comp, RichTextBox output )
         {
+            Console.WriteLine(name + "  " + state);
             //Check State and take turn accordingly
             switch(state)
             {
@@ -80,8 +82,8 @@ namespace Duel
             if (comp.getState() == 'b')
             {
                 //FIX THE BLOCK LOOP PROBLEM
-                comp.takeDamage(atk/3);
-                this.takeDamage(3);
+                comp.takeDamage(atk/2);
+                this.takeDamage(4);
                 output.AppendText(this.getName()+" attacks for: " + atk / 2 + "\n");
             }
             //Change Players HP down by a large random
@@ -110,19 +112,28 @@ namespace Duel
             }   
         }
         */
-        public void endTurn(RichTextBox pStats, RichTextBox output)
+        public void endTurn(RichTextBox pStats, RichTextBox output, ProgressBar pb)
         {
             state = ' ';
-            updateStats(pStats);
+            updateStats(pStats, pb);
             if (hp <= 0)
             {
                 this.pulse = false;
             }
         }
         
-        private void updateStats(RichTextBox pStats)
+        private void updateStats(RichTextBox pStats, ProgressBar pb)
         {
             pStats.Text = "HP: " + this.hp + "\n";// + "Potions: " + this.potions;
+            pb.Maximum = HPMAX;
+            if (hp > -1)
+            {
+                pb.Value = this.hp;
+            } else
+            {
+                pb.Value = 0;
+            }
+            
         }
         public void takeDamage(int atk)
         {

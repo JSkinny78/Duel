@@ -55,7 +55,6 @@ namespace Duel
 
             this.LearningRate = learningRate;
             this.Layers = new List<Layer>();
-            //Random rnd = new Random(Environment.TickCount);
             for (int l = 0; l < layers.Length; l++)
             {
                 Layer layer = new Layer(layers[l]);
@@ -79,7 +78,7 @@ namespace Duel
         {
             //Constructors 
             fn = filename;
-            sr = new StreamReader(filename);
+            //sr = new StreamReader(filename);
             int count = 0;
             int layersCount;
             int neuronCount;
@@ -137,10 +136,7 @@ namespace Duel
 
         public double[] Run(List<double> input)
         {
-            using (StreamWriter sw = new StreamWriter("fn"))
-            {
-                sw.Write(printValue());
-            }
+                      
             if (input.Count != this.Layers[0].NeuronCount) return null;
 
             for (int l = 0; l < Layers.Count; l++)
@@ -169,7 +165,7 @@ namespace Duel
             double[] output = new double[numOutput];
             for (int i = 0; i < last.Neurons.Count; i++)
                 output[i] = last.Neurons[i].Value;
-
+            
             return output;
         }
         public char Action(List<double> input)
@@ -270,7 +266,7 @@ namespace Duel
             {
                 fn = "NetworkTest1.txt";
             }
-            using (StreamWriter sw = new StreamWriter(fn+"1"))
+            using (StreamWriter sw = new StreamWriter(fn))
             {
                 sw.WriteLine(this.LearningRate);
                 sw.WriteLine(this.Layers.Count);

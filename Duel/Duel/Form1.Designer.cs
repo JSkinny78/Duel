@@ -47,6 +47,9 @@
             this.pWinsRTB = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.saveAndCloseBTN = new System.Windows.Forms.Button();
+            this.playerProgress = new System.Windows.Forms.ProgressBar();
+            this.ComputerProgress = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +101,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(1127, 42);
+            this.label1.Location = new System.Drawing.Point(1127, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 25);
             this.label1.TabIndex = 4;
@@ -108,9 +111,9 @@
             // 
             this.playerStatsRTB.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.playerStatsRTB.ForeColor = System.Drawing.SystemColors.Window;
-            this.playerStatsRTB.Location = new System.Drawing.Point(960, 38);
+            this.playerStatsRTB.Location = new System.Drawing.Point(880, 9);
             this.playerStatsRTB.Name = "playerStatsRTB";
-            this.playerStatsRTB.Size = new System.Drawing.Size(133, 46);
+            this.playerStatsRTB.Size = new System.Drawing.Size(133, 71);
             this.playerStatsRTB.TabIndex = 7;
             this.playerStatsRTB.Text = "";
             // 
@@ -118,7 +121,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(596, 42);
+            this.label2.Location = new System.Drawing.Point(497, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 25);
             this.label2.TabIndex = 8;
@@ -128,7 +131,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(32, 42);
+            this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(148, 25);
             this.label3.TabIndex = 9;
@@ -138,9 +141,9 @@
             // 
             this.compStatRTB.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.compStatRTB.ForeColor = System.Drawing.SystemColors.Window;
-            this.compStatRTB.Location = new System.Drawing.Point(218, 39);
+            this.compStatRTB.Location = new System.Drawing.Point(218, 13);
             this.compStatRTB.Name = "compStatRTB";
-            this.compStatRTB.Size = new System.Drawing.Size(121, 45);
+            this.compStatRTB.Size = new System.Drawing.Size(121, 71);
             this.compStatRTB.TabIndex = 10;
             this.compStatRTB.Text = "";
             // 
@@ -169,7 +172,7 @@
             // compBlock
             // 
             this.compBlock.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.compBlock.Location = new System.Drawing.Point(12, 510);
+            this.compBlock.Location = new System.Drawing.Point(12, 531);
             this.compBlock.Name = "compBlock";
             this.compBlock.Size = new System.Drawing.Size(154, 41);
             this.compBlock.TabIndex = 13;
@@ -193,7 +196,7 @@
             this.compHeal.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.compHeal.Location = new System.Drawing.Point(12, 445);
             this.compHeal.Name = "compHeal";
-            this.compHeal.Size = new System.Drawing.Size(154, 59);
+            this.compHeal.Size = new System.Drawing.Size(154, 73);
             this.compHeal.TabIndex = 14;
             this.compHeal.Text = "Reckless Attack";
             this.compHeal.UseVisualStyleBackColor = false;
@@ -239,12 +242,40 @@
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
             // 
+            // saveAndCloseBTN
+            // 
+            this.saveAndCloseBTN.Location = new System.Drawing.Point(613, 9);
+            this.saveAndCloseBTN.Name = "saveAndCloseBTN";
+            this.saveAndCloseBTN.Size = new System.Drawing.Size(213, 71);
+            this.saveAndCloseBTN.TabIndex = 21;
+            this.saveAndCloseBTN.Text = "Save and Close";
+            this.saveAndCloseBTN.UseVisualStyleBackColor = true;
+            this.saveAndCloseBTN.Click += new System.EventHandler(this.saveAndCloseBTN_Click);
+            // 
+            // playerProgress
+            // 
+            this.playerProgress.Location = new System.Drawing.Point(1042, 56);
+            this.playerProgress.Name = "playerProgress";
+            this.playerProgress.Size = new System.Drawing.Size(192, 28);
+            this.playerProgress.TabIndex = 22;
+            // 
+            // ComputerProgress
+            // 
+            this.ComputerProgress.ForeColor = System.Drawing.Color.Lime;
+            this.ComputerProgress.Location = new System.Drawing.Point(17, 56);
+            this.ComputerProgress.Name = "ComputerProgress";
+            this.ComputerProgress.Size = new System.Drawing.Size(159, 24);
+            this.ComputerProgress.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(1256, 656);
+            this.Controls.Add(this.ComputerProgress);
+            this.Controls.Add(this.playerProgress);
+            this.Controls.Add(this.saveAndCloseBTN);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pWinsRTB);
@@ -292,6 +323,9 @@
         private System.Windows.Forms.RichTextBox pWinsRTB;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button saveAndCloseBTN;
+        private System.Windows.Forms.ProgressBar playerProgress;
+        private System.Windows.Forms.ProgressBar ComputerProgress;
     }
 }
 
