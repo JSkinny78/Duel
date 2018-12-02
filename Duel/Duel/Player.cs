@@ -35,11 +35,11 @@ namespace Duel
                     break;
                 //Block()
                 case 'b':
-                    output.AppendText(name + " is Blocking" + "\n");
+                    output.AppendText(name + " Blocking with a Spiked shield" + "\n");
                     break;
                 //Heal()
                 case 'h':
-                    heal(output);
+                    recklessAttack(comp, output);
                     break;
                 default:
                     //Change to set to output box
@@ -52,23 +52,46 @@ namespace Duel
             //Check to see if player has blocked
             int atk;
             r = new Random((int) DateTime.Now.Ticks & 0x0000FFFF);
-            atk = r.Next(2,8);
+            atk = r.Next(2,6);
             Thread.Sleep(10);
             
             if(comp.getState() == 'b')
             {
                 //FIX THE BLOCK LOOP PROBLEM
-                comp.takeDamage(1);
-                output.AppendText(this.getName() +  "'s Attack is Blocked " + 1 + " Damage." + "\n");
-                output.AppendText(this.getName() +  "'s Attack is Blocked " + 1 + " Damage." + "\n");
+                comp.takeDamage(atk/2);
+                this.takeDamage(1);
+                output.AppendText(this.getName() + " attacks for: " + atk / 2 + "\n");
             }
             //Change Players HP down by a large random
             else
             {
                 comp.takeDamage(atk);
-                output.Text += getName() + " attacks for " + atk + " Damage." + "\n";
+                output.AppendText(this.getName() + " attacks for: " + atk + "\n");
             }
         }
+        private void recklessAttack(Player comp, RichTextBox output)
+        {
+            //Check to see if player has blocked
+            int atk;
+            r = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
+            atk = r.Next(4, 10);
+            Thread.Sleep(10);
+
+            if (comp.getState() == 'b')
+            {
+                //FIX THE BLOCK LOOP PROBLEM
+                comp.takeDamage(atk/2);
+                this.takeDamage(4);
+                output.AppendText(this.getName()+" attacks for: " + atk / 2 + "\n");
+            }
+            //Change Players HP down by a large random
+            else
+            {
+                comp.takeDamage(atk);
+                output.AppendText(this.getName() + " attacks for: " + atk + "\n");
+            }
+        }
+        /*
         private void heal(RichTextBox output)
         {
             int heal = 4;
@@ -86,6 +109,7 @@ namespace Duel
                 output.AppendText( "Oh no " + getName() +  " is out of potions, Wastes a turn" + "\n");
             }   
         }
+        */
         public void endTurn(RichTextBox pStats, RichTextBox output)
         {
             state = ' ';
@@ -98,7 +122,7 @@ namespace Duel
         
         private void updateStats(RichTextBox pStats)
         {
-            pStats.Text = "HP: " + this.hp + "\n" + "Potions: " + this.potions;
+            pStats.Text = "HP: " + this.hp + "\n";// + "Potions: " + this.potions;
         }
         public void takeDamage(int atk)
         {

@@ -1,0 +1,117 @@
+- Layer -
+-- Neurons: 4 --
+--- Neuron ---
+---- Bias: 0
+---- Delta: 0
+---- Value: 0
+---- Dendrites: 0
+--- Neuron ---
+---- Bias: 0
+---- Delta: 0
+---- Value: 3
+---- Dendrites: 0
+--- Neuron ---
+---- Bias: 0
+---- Delta: 0
+---- Value: 5
+---- Dendrites: 0
+--- Neuron ---
+---- Bias: 0
+---- Delta: 0
+---- Value: 3
+---- Dendrites: 0
+- Layer -
+-- Neurons: 4 --
+--- Neuron ---
+---- Bias: 0.934309904433
+---- Delta: 0
+---- Value: 0.990281164860823
+---- Dendrites: 4
+----- Dendrite
+----- Weight: 0.737247783568337
+----- Dendrite
+----- Weight: 0.844231659473959
+----- Dendrite
+----- Weight: 0.0401895553992081
+----- Dendrite
+----- Weight: 0.318656826074541
+--- Neuron ---
+---- Bias: 0.934309904433
+---- Delta: 0
+---- Value: 0.999130436646724
+---- Dendrites: 4
+----- Dendrite
+----- Weight: 0.582285365826583
+----- Dendrite
+----- Weight: 0.0351695968001939
+----- Dendrite
+----- Weight: 0.633552989751824
+----- Dendrite
+----- Weight: 0.946355259952301
+--- Neuron ---
+---- Bias: 0.934309904433
+---- Delta: 0
+---- Value: 0.992443363532891
+---- Dendrites: 4
+----- Dendrite
+----- Weight: 0.906872224484977
+----- Dendrite
+----- Weight: 0.0834241030194909
+----- Dendrite
+----- Weight: 0.463296081620872
+----- Dendrite
+----- Weight: 0.458893715152002
+--- Neuron ---
+---- Bias: 0.934309904433
+---- Delta: 0
+---- Value: 0.990147256696393
+---- Dendrites: 4
+----- Dendrite
+----- Weight: 0.616998684879857
+----- Dendrite
+----- Weight: 0.202292935551281
+----- Dendrite
+----- Weight: 0.490159722738974
+----- Dendrite
+----- Weight: 0.206038809011708
+- Layer -
+-- Neurons: 3 --
+--- Neuron ---
+---- Bias: -3.7308109815179
+---- Delta: 0.00184401452907781
+---- Value: 0.00630467665881163
+---- Dendrites: 4
+----- Dendrite
+----- Weight: -1.49534636860859
+----- Dendrite
+----- Weight: -1.06379625627523
+----- Dendrite
+----- Weight: 0.410656025143497
+----- Dendrite
+----- Weight: 0.95295206807425
+--- Neuron ---
+---- Bias: 2.03187155651507
+---- Delta: -0.00354191926160115
+---- Value: 0.994871745281432
+---- Dendrites: 4
+----- Dendrite
+----- Weight: 4.97312244569858
+----- Dendrite
+----- Weight: -0.934205710822645
+----- Dendrite
+----- Weight: -0.617077067033823
+----- Dendrite
+----- Weight: -0.409724333205107
+--- Neuron ---
+---- Bias: -0.0165269833143085
+---- Delta: 0.0119811054581543
+---- Value: 0.0504252247322125
+---- Dendrites: 4
+----- Dendrite
+----- Weight: 0.838040321477639
+----- Dendrite
+----- Weight: 0.211012223364537
+----- Dendrite
+----- Weight: -2.24105515273517
+----- Dendrite
+----- Weight: -0.8554639905068

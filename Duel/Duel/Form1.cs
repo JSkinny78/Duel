@@ -14,8 +14,10 @@ namespace Duel
     {
         //initialize player
         Player p = new Player("Player");
+        int pWins = 0;
         //initialize computer
         Player c = new Player("Computer");
+        int cWins = 0;
         //initialize computer brain
         //Layers
         //input: 4(my.hp, my.potions, notmy.hp, notmy.potions)
@@ -43,8 +45,8 @@ namespace Duel
             playerStats.Add(Convert.ToDouble(p.getPotions()));
             playerStats.Add(Convert.ToDouble(c.getHP()));
             playerStats.Add(Convert.ToDouble(c.getPotions()));
-            p.setState(brain1.Action(playerStats));
-            string pstat = string.Join(", ", playerStats.ToArray());
+            //p.setState(brain1.Action(playerStats));
+            //string pstat = string.Join(", ", playerStats.ToArray());
             //Computer Stats
             List<double> computerStats = new List<Double>();
             computerStats.Add(Convert.ToDouble(c.getHP()));
@@ -52,13 +54,15 @@ namespace Duel
             computerStats.Add(Convert.ToDouble(p.getHP()));
             computerStats.Add(Convert.ToDouble(p.getPotions()));
             c.setState(brain2.Action(playerStats));
-            string cstat = string.Join(", ", computerStats.ToArray());
-            outputRTB.AppendText(pstat + "\n" + cstat + "\n");
+            //string cstat = string.Join(", ", computerStats.ToArray());
+            //outputRTB.AppendText(pstat + "\n" + cstat + "\n");
 
             //Check if players alive
             if (p.getPulse() == false && c.getPulse() == false)
             {
-                outputRTB.AppendText("\n" + "Tie!" + "\n" + "Thank you for playing");
+                outputRTB.AppendText("\n" + "Tie!" );
+                outputRTB.AppendText("\n"+"Game Restarting");
+                restart();
             }
             else if(c.getPulse() == false)
             {
@@ -137,6 +141,118 @@ namespace Duel
         {
             //Set computer to h
             c.setState('h');
+        }
+
+
+        private void trainBtn_Click(object sender, EventArgs e)
+        {
+            //Add computer training to this loop
+            //See Who Wins
+            //Define a way of telling who wins
+            //Setting the input values
+            
+            
+            for (int i = 0; i < 10000; i++)
+            {
+                List<double> playerStats = new List<Double>();
+                playerStats.Add(Convert.ToDouble(p.getHP()));
+                playerStats.Add(Convert.ToDouble(p.getPotions()));
+                playerStats.Add(Convert.ToDouble(c.getHP()));
+                playerStats.Add(Convert.ToDouble(c.getPotions()));
+                //p.setState(ajax.Action(playerStats));
+                p.setState(randomChar());
+                string pstat = string.Join(", ", playerStats.ToArray());
+                //Computer Stats
+                List<double> computerStats = new List<Double>();
+                computerStats.Add(Convert.ToDouble(c.getHP()));
+                computerStats.Add(Convert.ToDouble(c.getPotions()));
+                computerStats.Add(Convert.ToDouble(p.getHP()));
+                computerStats.Add(Convert.ToDouble(p.getPotions()));
+                c.setState(burtha.Action(computerStats));
+                Console.WriteLine(c.getState());
+                string cstat = string.Join(", ", computerStats.ToArray());
+                //outputRTB.AppendText(pstat + "\n" + cstat + "\n");
+                
+                //Check if players alive
+                if (p.getPulse() == false && c.getPulse() == false)
+                {
+                    outputRTB.AppendText("\n" + "Tie!" + "\n" + "Thank you for playing" + "\n");
+                    outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
+                    outputRTB.AppendText("\n Game Restarting");
+                    restart();
+                    regenNN(ajax,playerStats);
+                    regenNN(burtha, computerStats);
+                }
+                else if (c.getPulse() == false)
+                {
+                    outputRTB.AppendText("\n" + p.getName() + " Wins!");
+                    outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
+                    outputRTB.AppendText("\n Game Restarting");
+                    restart();
+                    regenNN(burtha, computerStats);
+                    ajax.saveNetwork();
+                    pWins++;
+                    pWinsRTB.Text = ("Wins: " + pWins);
+                }
+                else if (p.getPulse() == false)
+                {
+                    Random n = new Random(Environment.TickCount);
+                    outputRTB.AppendText("\n" + c.getName() + " Wins!");
+                    outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
+                    outputRTB.AppendText("\n Game Restarting");
+                    restart();
+                    burtha.saveNetwork();
+                    regenNN(ajax,playerStats);
+                    cWins++;
+                    cWinsRTB.Text = ("Wins: " + cWins);
+                }
+                else
+                {
+                    //Computer Decides what to do
+                    //c.setstate(brain.choice(p.getHP(), p.getPotions())
+                    //call p.TakeTurn(c)
+                    p.takeTurn(c, outputRTB);
+                    //Call c.TakeTurn(p)
+                    c.takeTurn(p, outputRTB);
+                    //call p.EndTurn()
+                    p.endTurn(playerStatsRTB, outputRTB);
+                    //call c.EndTurn(p)
+                    c.endTurn(compStatRTB, outputRTB);
+                }
+                outputRTB.SelectionStart = outputRTB.Text.Length;
+                outputRTB.ScrollToCaret();
+            }
+
+        }
+        private Double getNextRand(double x, double y)
+        {
+            Random rnd = new Random(Environment.TickCount);
+            double next = rnd.NextDouble();
+            //Console.WriteLine(next);
+            return x + (next * (y - x));
+        }
+        private void regenNN(NeuralNetwork n, List<Double> input)
+        {
+            List<Double> output = new List<Double>();
+            Double change;
+            change = getNextRand(0, 1);
+            output.Add(change);
+            change = getNextRand(0, 1);
+            output.Add(change);
+            change = getNextRand(0, 1);
+            output.Add(change);
+            burtha.Train(input, output);
+        }
+        private char randomChar()
+        {
+            Double d = getNextRand(0, 3);
+            if (d > 1){
+                return 'h';
+            }else if (d > 2){
+                return 'b';
+            }else{
+                return 'a';
+            }
         }
     }
 }

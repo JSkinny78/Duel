@@ -18,3 +18,13 @@ C:\Users\Cattibre\Documents\School\ai\Duel\Duel\obj\Debug\Duel.csproj.GenerateRe
 C:\Users\Cattibre\Documents\School\ai\Duel\Duel\obj\Debug\Duel.csproj.CoreCompileInputs.cache
 C:\Users\Cattibre\Documents\School\ai\Duel\Duel\obj\Debug\Duel.exe
 C:\Users\Cattibre\Documents\School\ai\Duel\Duel\obj\Debug\Duel.pdb
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\bin\Debug\Duel.exe.config
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\bin\Debug\Duel.exe
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\bin\Debug\Duel.pdb
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.csprojAssemblyReference.cache
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.Form1.resources
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.Properties.Resources.resources
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.csproj.GenerateResource.cache
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.csproj.CoreCompileInputs.cache
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.exe
+C:\Users\Cattibre\Documents\School\ai\DuelRepo\Duel\Duel\obj\Debug\Duel.pdb

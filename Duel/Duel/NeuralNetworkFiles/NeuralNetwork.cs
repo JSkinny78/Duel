@@ -126,7 +126,7 @@ namespace Duel
                 //Add Layer
                 this.Layers.Add(layer);
             }
-
+            sr.Close();
 
         }
 
@@ -177,7 +177,7 @@ namespace Duel
             double[] output = this.Run(input);
             double maxVal = output.Max();
             int maxIndex = output.ToList().IndexOf(maxVal);
-            Console.WriteLine(maxIndex);
+            //Console.WriteLine(maxIndex);
 
             switch (maxIndex)
             {
@@ -266,7 +266,11 @@ namespace Duel
         }
         public void saveNetwork()
         {
-            using (StreamWriter sw = new StreamWriter("NetworkTest3.txt"))
+            if(fn == "")
+            {
+                fn = "NetworkTest1.txt";
+            }
+            using (StreamWriter sw = new StreamWriter(fn+"1"))
             {
                 sw.WriteLine(this.LearningRate);
                 sw.WriteLine(this.Layers.Count);
