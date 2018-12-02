@@ -53,32 +53,31 @@ namespace Duel
             computerStats.Add(Convert.ToDouble(c.getPotions()));
             computerStats.Add(Convert.ToDouble(p.getHP()));
             computerStats.Add(Convert.ToDouble(p.getPotions()));
-            c.setState(brain2.Action(playerStats));
+            c.setState(burtha.Action(playerStats));
             //string cstat = string.Join(", ", computerStats.ToArray());
             //outputRTB.AppendText(pstat + "\n" + cstat + "\n");
 
             //Check if players alive
             if (p.getPulse() == false && c.getPulse() == false)
             {
-                outputRTB.AppendText("\n" + "Tie!" );
+                outputRTB.AppendText("\n" + "******Tie!******" );
                 outputRTB.AppendText("\n"+"Game Restarting");
                 restart();
             }
-            else if(c.getPulse() == false)
+            else if(c.getPulse() == false)//Computer Dead
             {
                 outputRTB.AppendText("\n" + p.getName() + " Wins!" + "\n" + "Thank you for playing");
-                outputRTB.AppendText("Game Restarting");
+                outputRTB.AppendText("\n" + "Game Restarting"+"\n");
                 restart();
-                Random n = new Random(Environment.TickCount);
-                brain1 = new NeuralNetwork(15, new int[] { 4, 4, 3 },0);
+                regenNN(burtha, computerStats);
             }
-            else if (p.getPulse() == false)
+            else if (p.getPulse() == false)//Player Dead
             {
                 Random n = new Random(Environment.TickCount);
                 outputRTB.AppendText("\n" + c.getName() + " Wins!" + "\n" + "Thank you for playing");
-                outputRTB.AppendText("Game Restarting");
+                outputRTB.AppendText("\n" + "Game Restarting");
                 restart();
-                brain2 = new NeuralNetwork(15, new int[] { 4, 4, 3 },0);
+                burtha.saveNetwork();
             }
             else
             {
@@ -176,14 +175,14 @@ namespace Duel
                 //Check if players alive
                 if (p.getPulse() == false && c.getPulse() == false)
                 {
-                    outputRTB.AppendText("\n" + "Tie!" + "\n" + "Thank you for playing" + "\n");
+                    outputRTB.AppendText("\n" + "******Tie!******");
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
-                    outputRTB.AppendText("\n Game Restarting");
+                    outputRTB.AppendText("\n Game Restarting \n");
                     restart();
                     regenNN(ajax,playerStats);
                     regenNN(burtha, computerStats);
                 }
-                else if (c.getPulse() == false)
+                else if (c.getPulse() == false) //Computer Dead
                 {
                     outputRTB.AppendText("\n" + p.getName() + " Wins!");
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
@@ -194,7 +193,7 @@ namespace Duel
                     pWins++;
                     pWinsRTB.Text = ("Wins: " + pWins);
                 }
-                else if (p.getPulse() == false)
+                else if (p.getPulse() == false) //Player Dead
                 {
                     Random n = new Random(Environment.TickCount);
                     outputRTB.AppendText("\n" + c.getName() + " Wins!");

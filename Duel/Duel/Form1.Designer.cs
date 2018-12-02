@@ -108,9 +108,9 @@
             // 
             this.playerStatsRTB.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.playerStatsRTB.ForeColor = System.Drawing.SystemColors.Window;
-            this.playerStatsRTB.Location = new System.Drawing.Point(999, 96);
+            this.playerStatsRTB.Location = new System.Drawing.Point(960, 38);
             this.playerStatsRTB.Name = "playerStatsRTB";
-            this.playerStatsRTB.Size = new System.Drawing.Size(235, 101);
+            this.playerStatsRTB.Size = new System.Drawing.Size(133, 46);
             this.playerStatsRTB.TabIndex = 7;
             this.playerStatsRTB.Text = "";
             // 
@@ -138,9 +138,9 @@
             // 
             this.compStatRTB.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.compStatRTB.ForeColor = System.Drawing.SystemColors.Window;
-            this.compStatRTB.Location = new System.Drawing.Point(26, 96);
+            this.compStatRTB.Location = new System.Drawing.Point(218, 39);
             this.compStatRTB.Name = "compStatRTB";
-            this.compStatRTB.Size = new System.Drawing.Size(239, 101);
+            this.compStatRTB.Size = new System.Drawing.Size(121, 45);
             this.compStatRTB.TabIndex = 10;
             this.compStatRTB.Text = "";
             // 
@@ -160,7 +160,7 @@
             this.compAttack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.compAttack.Location = new System.Drawing.Point(12, 399);
             this.compAttack.Name = "compAttack";
-            this.compAttack.Size = new System.Drawing.Size(154, 79);
+            this.compAttack.Size = new System.Drawing.Size(154, 40);
             this.compAttack.TabIndex = 12;
             this.compAttack.Text = "Attack";
             this.compAttack.UseVisualStyleBackColor = false;
@@ -169,9 +169,9 @@
             // compBlock
             // 
             this.compBlock.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.compBlock.Location = new System.Drawing.Point(111, 493);
+            this.compBlock.Location = new System.Drawing.Point(12, 510);
             this.compBlock.Name = "compBlock";
-            this.compBlock.Size = new System.Drawing.Size(154, 79);
+            this.compBlock.Size = new System.Drawing.Size(154, 41);
             this.compBlock.TabIndex = 13;
             this.compBlock.Text = "Spiked Shield";
             this.compBlock.UseVisualStyleBackColor = false;
@@ -191,9 +191,9 @@
             // compHeal
             // 
             this.compHeal.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.compHeal.Location = new System.Drawing.Point(195, 399);
+            this.compHeal.Location = new System.Drawing.Point(12, 445);
             this.compHeal.Name = "compHeal";
-            this.compHeal.Size = new System.Drawing.Size(154, 79);
+            this.compHeal.Size = new System.Drawing.Size(154, 59);
             this.compHeal.TabIndex = 14;
             this.compHeal.Text = "Reckless Attack";
             this.compHeal.UseVisualStyleBackColor = false;
@@ -222,9 +222,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(908, 203);
+            this.pictureBox1.Location = new System.Drawing.Point(880, 90);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(326, 177);
+            this.pictureBox1.Size = new System.Drawing.Size(364, 303);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
@@ -232,9 +232,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(23, 216);
+            this.pictureBox2.Location = new System.Drawing.Point(-1, 105);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(316, 177);
+            this.pictureBox2.Size = new System.Drawing.Size(374, 275);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;

@@ -20,7 +20,7 @@ namespace Duel
         public Player(string id)
         {
             this.name = id;
-            this.hp = 25;
+            this.hp = 40;
             this.potions = 3;
             this.pulse = true;
         }
@@ -52,7 +52,7 @@ namespace Duel
             //Check to see if player has blocked
             int atk;
             r = new Random((int) DateTime.Now.Ticks & 0x0000FFFF);
-            atk = r.Next(2,6);
+            atk = r.Next(3,7);
             Thread.Sleep(10);
             
             if(comp.getState() == 'b')
@@ -80,8 +80,8 @@ namespace Duel
             if (comp.getState() == 'b')
             {
                 //FIX THE BLOCK LOOP PROBLEM
-                comp.takeDamage(atk/2);
-                this.takeDamage(4);
+                comp.takeDamage(atk/3);
+                this.takeDamage(3);
                 output.AppendText(this.getName()+" attacks for: " + atk / 2 + "\n");
             }
             //Change Players HP down by a large random
