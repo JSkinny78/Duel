@@ -189,7 +189,7 @@ namespace Duel
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
                     restart();
                     //regenNN(ajax,playerStats);
-                    regenNN(burtha, computerStats);
+                    //regenNN(burtha, computerStats);
                 }
                 else if (c.getPulse() == false) //Computer Dead
                 {
@@ -208,7 +208,7 @@ namespace Duel
                     outputRTB.AppendText("\n" + "P Wins: " + pWins + "  C Wins: " + cWins);
                     restart();
                     //burtha.saveNetwork();
-                    regenNN(ajax,playerStats);
+                    //regenNN(ajax,playerStats);
                     cWins++;
                     cWinsRTB.Text = ("Wins: " + cWins);
                 }
@@ -241,11 +241,11 @@ namespace Duel
         {
             List<Double> output = new List<Double>();
             Double change;
-            change = getNextRand(0, 1);
+            change = getNextRand(.5, 1);
             output.Add(change);
-            change = getNextRand(0, 1);
+            change = getNextRand(0, .1);
             output.Add(change);
-            change = getNextRand(0, 1);
+            change = getNextRand(.5, 1);
             output.Add(change);
             burtha.Train(input, output);
         }

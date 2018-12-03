@@ -61,7 +61,7 @@ namespace Duel
             {
                 //FIX THE BLOCK LOOP PROBLEM
                 comp.takeDamage(atk/2);
-                this.takeDamage(1);
+                this.takeDamage(0);
                 output.AppendText(this.getName() + " attacks for: " + atk / 2 + "\n");
             }
             //Change Players HP down by a large random
